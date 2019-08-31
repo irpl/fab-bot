@@ -3,6 +3,7 @@ const moment = require("moment-timezone");
 const mongoose = require("mongoose");
 const parse = require("parse-messy-time");
 const commandArgsMiddleware = require("./commandArgs");
+require("dotenv").config();
 
 const bot = new Telegraf(process.env.FAB_BOT_TOKEN);
 
@@ -51,36 +52,34 @@ bot.command("pants", ctx => {
   }
 });
 
-// bot.command('minders', async ctx => {
-//     try {
-//       await mongoose.connect(
-//         "mongodb+srv://fab:MdHya7LpeKR6ah8k@cluster0-xfxaw.mongodb.net/test?retryWrites=true&w=majority",
-//         { useNewUrlParser: true }
-//       );
-//       return await Minder.find({ id: m.chat_id, who: m.username });
-//     } catch (err) {
-//       return err.message;
-//     }
-//   })
+bot.command("minders", async ctx => {
+  try {
+    await mongoose.connect(process.env.FAB_BOT_MONGO, {
+      useNewUrlParser: true
+    });
+    ctx.reply(await Minder.find({ id: m.chat_id, who: m.username }));
+  } catch (err) {
+    ctx.reply(err.message);
+  }
+});
 
-// bot.command('mindme', async ctx => {
-//     try {
-//       await mongoose.connect(
-//         "mongodb+srv://fab:MdHya7LpeKR6ah8k@cluster0-xfxaw.mongodb.net/test?retryWrites=true&w=majority",
-//         { useNewUrlParser: true }
-//       );
+bot.command("mindme", async ctx => {
+  try {
+    await mongoose.connect(process.env.FAB_BOT_MONGO, {
+      useNewUrlParser: true
+    });
 
-//       const minder = await new Minder({
-//         text: m.args,
-//         who: m.username,
-//         id: m.chat_id
-//       });
+    const minder = await new Minder({
+      text: m.args,
+      who: m.username,
+      id: m.chat_id
+    });
 
-//       await minder.save();
-//       return "did";
-//     } catch (err) {
-//       return err.message;
-//       // process.exit(1);
-//     }
+    await minder.save();
+    ctx.reply("did");
+  } catch (err) {
+    ctx.reply(err.message);
+  }
+});
+
 bot.launch();
-// bot.startPolling();
