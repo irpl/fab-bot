@@ -9,6 +9,13 @@ const bot = new Telegraf(process.env.FAB_BOT_TOKEN);
 
 bot.use(commandArgsMiddleware());
 
+const Minder = mongoose.model("Minder", {
+  text: String,
+  who: String,
+  id: String,
+  created: { type: String, default: Date.now }
+});
+
 // bot.start(ctx => ctx.reply("Welcome!"));
 // bot.help(ctx => ctx.reply("Send me a sticker"));
 // bot.on('sticker', (ctx) => ctx.reply('í±'))
@@ -41,12 +48,12 @@ bot.command("pants", ctx => {
       ctx
         .reply("someone's in the house!")
         .then(msg => ctx.pinChatMessage(ctx.message.chat.id, msg))
-        .catch(err => console.log(err));
+        .catch(err => ctx.reply(err.message));
     else if (ctx.state.args[0] === "off")
       ctx
         .reply("ok, you can come out now")
         .then(() => ctx.unpinChatMessage(ctx.message.chat.id))
-        .catch(err => console.log(err));
+        .catch(err => ctx.reply(err.message));
   } else {
     ctx.reply("/pants requires yes/no arg");
   }
@@ -57,7 +64,11 @@ bot.command("minders", async ctx => {
     await mongoose.connect(process.env.FAB_BOT_MONGO, {
       useNewUrlParser: true
     });
-    ctx.reply(await Minder.find({ id: m.chat_id, who: m.username }));
+    let messages = await Minder.find({
+      id: ctx.message.chat.id,
+      who: ctx.message.from.id
+    }).sort({ created: -1 });
+    messages.map(message => ctx.reply(message.text));
   } catch (err) {
     ctx.reply(err.message);
   }
@@ -70,13 +81,13 @@ bot.command("mindme", async ctx => {
     });
 
     const minder = await new Minder({
-      text: m.args,
-      who: m.username,
-      id: m.chat_id
+      text: ctx.state.args.join(" "),
+      who: ctx.message.from.id,
+      id: ctx.message.chat.id
     });
 
     await minder.save();
-    ctx.reply("did");
+    await ctx.reply("did");
   } catch (err) {
     ctx.reply(err.message);
   }
