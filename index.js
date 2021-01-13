@@ -1,4 +1,5 @@
-const Telegraf = require("telegraf");
+//const Telegraf = require("telegraf");
+const { Composer } = require('micro-bot');
 const moment = require("moment-timezone");
 const mongoose = require("mongoose");
 const parse = require("parse-messy-time");
@@ -8,7 +9,8 @@ if (process.env.NODE_ENV != "production") {
   require("dotenv").config();
 }
 
-const bot = new Telegraf(process.env.FAB_BOT_TOKEN);
+//const bot = new Telegraf(process.env.FAB_BOT_TOKEN);
+const bot = new Composer();
 
 bot.use(commandArgsMiddleware());
 
@@ -96,8 +98,5 @@ bot.command("mindme", async ctx => {
   }
 });
 
-bot.launch();
+module.exports = bot
 
-// Enable graceful stop
-process.once('SIGINT', () => bot.stop('SIGINT'))
-process.once('SIGTERM', () => bot.stop('SIGTERM'))

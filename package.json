@@ -4,17 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "micro-bot"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "micro-bot": "^2.5.3",
     "moment-timezone": "^0.5.26",
     "mongoose": "^5.7.5",
-    "parse-messy-time": "^2.1.0",
-    "telegraf": "^3.32.0"
+    "parse-messy-time": "^2.1.0"
   },
   "devDependencies": {
     "dotenv": "^8.1.0"
