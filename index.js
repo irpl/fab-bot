@@ -3,7 +3,10 @@ const moment = require("moment-timezone");
 const mongoose = require("mongoose");
 const parse = require("parse-messy-time");
 const commandArgsMiddleware = require("./commandArgs");
-require("dotenv").config();
+
+if (process.env.NODE_ENV != "production") {
+  require("dotenv").config();
+}
 
 const bot = new Telegraf(process.env.FAB_BOT_TOKEN);
 
