@@ -1,1 +1,1 @@
-web: npm start
+web: telegraf -t "$BOT_TOKEN" -p $PORT index.js

@@ -93,4 +93,6 @@ bot.command("mindme", async (ctx) => {
 
 // bot.startWebhook("/", null, process.env.PORT || 5000);
 
-bot.launch();
+// bot.launch();
+
+module.exports = bot;
