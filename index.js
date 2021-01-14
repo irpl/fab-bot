@@ -1,4 +1,4 @@
-const Telegraf = require("telegraf");
+const { Telegraf } = require("telegraf");
 const moment = require("moment-timezone");
 const mongoose = require("mongoose");
 const parse = require("parse-messy-time");
@@ -89,4 +89,4 @@ bot.command("mindme", async (ctx) => {
   }
 });
 
-bot.startWebhook("/", null, process.env.PORT);
+bot.startWebhook("/", null, process.env.PORT || 5000);
