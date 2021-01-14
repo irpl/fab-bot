@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "micro-bot -p $port"
+    "start": "micro-bot -p $PORT"
   },
   "keywords": [],
   "author": "",
