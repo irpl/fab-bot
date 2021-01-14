@@ -4,16 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "micro-bot -p $PORT"
+    "start": "node start"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "micro-bot": "^2.5.3",
     "moment-timezone": "^0.5.26",
     "mongoose": "^5.7.5",
-    "parse-messy-time": "^2.1.0"
+    "parse-messy-time": "^2.1.0",
+    "telegraf": "^4.0.1"
   },
   "devDependencies": {
     "dotenv": "^8.1.0"
