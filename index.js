@@ -89,4 +89,7 @@ bot.command("mindme", async (ctx) => {
   }
 });
 
-bot.startWebhook("/", null, process.env.PORT || 5000);
+bot.telegram.setWebhook("https://filanjuanbrn.herokuapp.com/secret-path");
+// bot.telegram.setWebhook("http://localhost/secret-path");
+
+bot.startWebhook("/secret-path", null, process.env.PORT || 5000);
