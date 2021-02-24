@@ -4,16 +4,26 @@
 
 Set environment variables:
 
-1. BOT_TOKEN
-2. FAB_BOT_MONGO
+1. FAB_BOT_TOKEN
 
-## For heroku
-
-In the heroku cli run:
+## For vercel
 
 ```
-heroku ps:scale -a <app-name> web=0 worker=1
+POST https://api.telegram.org/bot<FAB_BOT_TOKEN>/setWebhook?url=<DEPLOYED_URL>/api
 ```
 
-Then redeploy the app.  
-Do this to avoid the "Error R10 (Boot timeout)" error message.
+## Other userful links
+
+```
+POST https://api.telegram.org/bot<FAB_BOT_TOKEN>/deleteWebhook
+POST https://api.telegram.org/bot<FAB_BOT_TOKEN>/getWebhookInfo
+POST https://api.telegram.org/bot<FAB_BOT_TOKEN>/getUpdates
+```
+
+## Useful tutorials
+
+```
+https://akhromieiev.com/building-telegram-bot-with-firebase-cloud-functions-and-telegrafjs/
+https://frontend-devops.com/blog/build-deploy-a-vercel-api
+https://github.com/king-11/Jarvis11
+```
