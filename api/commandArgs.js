@@ -1,7 +1,7 @@
 const commandArgs = () => (ctx, next) => {
   // console.log(ctx.updateSubTypes);
   // if (ctx.updateType === "message" && ctx.updateSubTypes[0] === "text") {
-  if (ctx.updateType === "message") {
+  if (ctx.updateType === "message" && ctx.message.text) {
     const text = ctx.update.message.text.toLowerCase();
     if (text.startsWith("/")) {
       const match = text.match(/^\/([^\s]+)\s?(.+)?/);
