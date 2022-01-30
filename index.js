@@ -95,4 +95,15 @@ bot.command("mindme", async (ctx) => {
 
 // bot.launch();
 
+const serverless = require("serverless-http");
+const express = require("express");
+const app = express();
+
+app.get("/sendcustom", function (req, res) {
+  bot.telegram.sendMessage(req.body.chatId, req.body.message);
+  res.json({ message: "sent" });
+});
+
+module.exports.handler = serverless(app);
+
 module.exports = bot;
