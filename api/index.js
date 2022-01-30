@@ -54,12 +54,3 @@ module.exports = async (request, response) => {
     return !rv && response.status(200);
   });
 };
-
-module.exports.sendcustom = async (request, response) => {
-  console.log("Incoming message", request.body);
-
-  return await bot.telegram.sendMessage(request.body.chatId, request.body.message).then((rv) => {
-    // if it's not a request from the telegram, rv will be undefined, but we should respond with 200
-    return !rv && response.status(200);
-  });
-};
