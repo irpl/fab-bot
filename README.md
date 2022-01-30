@@ -18,6 +18,7 @@ POST https://api.telegram.org/bot<FAB_BOT_TOKEN>/setWebhook?url=<DEPLOYED_URL>/a
 POST https://api.telegram.org/bot<FAB_BOT_TOKEN>/deleteWebhook
 POST https://api.telegram.org/bot<FAB_BOT_TOKEN>/getWebhookInfo
 POST https://api.telegram.org/bot<FAB_BOT_TOKEN>/getUpdates
+GET https://api.telegram.org/bot<FAB_BOT_TOKEN>/getUpdates?timeout=10
 ```
 
 ## Useful tutorials

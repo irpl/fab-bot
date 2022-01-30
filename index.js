@@ -99,7 +99,7 @@ const serverless = require("serverless-http");
 const express = require("express");
 const app = express();
 
-app.get("/sendcustom", function (req, res) {
+app.post("/sendcustom", function (req, res) {
   bot.telegram.sendMessage(req.body.chatId, req.body.message);
   res.json({ message: "sent" });
 });
