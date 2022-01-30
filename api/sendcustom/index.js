@@ -6,5 +6,5 @@ module.exports = async (request, response) => {
   console.log("Incoming message", request.body);
 
   await bot.telegram.sendMessage(request.body.chatId, request.body.message);
-  return response.status(200);
+  return await response.status(200);
 };
