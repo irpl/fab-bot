@@ -47,10 +47,12 @@ bot.command("pants", (ctx) => {
 });
 
 // handle all telegram updates with HTTPs trigger
-module.exports = async (request, response) => {
-  console.log("Incoming message", request.body);
-  return await bot.handleUpdate(request.body, response).then((rv) => {
-    // if it's not a request from the telegram, rv will be undefined, but we should respond with 200
-    return !rv && response.status(200);
-  });
+module.exports = {
+  handleUpdates: async (request, response) => {
+    console.log("Incoming message", request.body);
+    return await bot.handleUpdate(request.body, response).then((rv) => {
+      // if it's not a request from the telegram, rv will be undefined, but we should respond with 200
+      return !rv && response.status(200);
+    });
+  },
 };
