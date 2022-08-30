@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.2",
-    "moment-timezone": "^0.5.26",
+    "moment-timezone": "^0.5.35",
     "mongoose": "^5.7.5",
     "parse-messy-time": "^2.1.0",
     "serverless-http": "^2.7.0",
