@@ -7,6 +7,6 @@ module.exports = async (request, response) => {
   console.log("Incoming image");
 
   const screenshotBuffer = await buffer(request);
-  await bot.telegram.sendPhoto(request.params.chatId, { source: screenshotBuffer });
+  await bot.telegram.sendPhoto(request.params.id, { source: screenshotBuffer });
   return await response.json({ image: "sent" });
 };
