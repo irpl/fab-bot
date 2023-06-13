@@ -11,8 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "@vercel/node": "^1.9.0",
-    "micro": "^10.0.1",
     "moment-timezone": "^0.5.26",
+    "multer": "^1.4.5-lts.1",
     "parse-messy-time": "^2.1.0",
     "telegraf": "^4.0.1"
   },
