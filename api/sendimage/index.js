@@ -21,11 +21,11 @@ function runMiddleware(req, res, fn) {
 
 module.exports = async (request, response) => {
   console.log("Incoming image");
-  // const chatId = request.body.chatId;
+  const chatId = request.body.chatId;
 
   await runMiddleware(request, response, uploadMiddleware);
   const screenshotBuffer = await request.file.buffer;
   console.log(request.file.buffer);
-  await bot.telegram.sendPhoto("111981945", { source: screenshotBuffer });
+  await bot.telegram.sendPhoto(chatId, { source: screenshotBuffer });
   return await response.json({ image: "sent" });
 };
