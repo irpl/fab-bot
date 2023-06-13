@@ -22,10 +22,10 @@ function runMiddleware(req, res, fn) {
 module.exports = async (request, response) => {
   console.log("Incoming image");
   // const chatId = request.body.chatId;
-  const screenshotBuffer = await req.file.buffer;
+  const screenshotBuffer = await request.file.buffer;
 
-  await runMiddleware(req, res, uploadMiddleware);
-  console.log(req.file.buffer);
+  await runMiddleware(request, response, uploadMiddleware);
+  console.log(request.file.buffer);
   await bot.telegram.sendPhoto("111981945", { source: screenshotBuffer });
   return await response.json({ image: "sent" });
 };
