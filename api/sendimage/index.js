@@ -3,7 +3,7 @@ import multer from "multer";
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
-const uploadMiddleware = upload.fields([{ name: file }, { name: chatId }]);
+const uploadMiddleware = upload.fields([{ name: "file" }, { name: "chatId" }]);
 
 const bot = new Telegraf(process.env.FAB_BOT_TOKEN);
 
