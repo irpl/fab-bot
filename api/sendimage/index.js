@@ -3,7 +3,7 @@ import multer from "multer";
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
-const uploadMiddleware = upload.fields([{ name: "file" }, { name: "chatId" }]);
+const uploadMiddleware = upload.any();
 
 const bot = new Telegraf(process.env.FAB_BOT_TOKEN);
 
@@ -23,7 +23,7 @@ module.exports = async (request, response) => {
   await runMiddleware(request, response, uploadMiddleware);
 
   const chatId = request.body.chatId;
-  const screenshotBuffer = await request.file;
+  const screenshotBuffer = await request.files[0].buffer;
 
   await bot.telegram.sendPhoto(chatId, { source: screenshotBuffer });
 
