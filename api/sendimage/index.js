@@ -23,7 +23,7 @@ module.exports = async (request, response) => {
   await runMiddleware(request, response, uploadMiddleware);
 
   const chatId = request.body.chatId;
-  const screenshotBuffer = await request.file;
+  const screenshotBuffer = await request.file.buffer;
 
   await bot.telegram.sendPhoto(chatId, { source: screenshotBuffer });
 
